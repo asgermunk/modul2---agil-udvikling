@@ -1,3 +1,5 @@
+using modul2_agiludvikling.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

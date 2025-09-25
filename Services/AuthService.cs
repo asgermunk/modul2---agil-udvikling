@@ -1,3 +1,6 @@
+using Microsoft.JSInterop.Infrastructure;
+using modul2_agiludvikling.Services;
+
 public interface IAuthService
 {
     LoginResponse Login(LoginRequest request);
