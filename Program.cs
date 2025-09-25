@@ -2,8 +2,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Register the UserService for dependency injection
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
@@ -27,18 +32,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllers();
 app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();
 
-
-List<User> users = new List<User>
-{
-    new User(1, "Alice", "alice@example.com", "password123"),
-    new User(2, "Bob", "bob@example.com", "password456")
-};
-app.MapGet("/users", () =>
-{ 
-    return users;
-});
 app.Run();
